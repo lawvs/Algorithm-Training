@@ -4,36 +4,44 @@
  *
  * 创建时间：2018-3-18 03:01:43
  * 通过时间：2018-3-18 04:26:32
+ * 优化时间：2018-3-18 05:30:22
  */
 
 class Solution {
 public:
     string longestPalindrome(string s) {
-        string maxs;
+        int maxLen = 0;
+        int retInd = 0;
+        int startInd;
+        int endInd;
+        int tmpl;
 
         int l = s.length();
         for (int i = 0; i < l; i++) {
-            string tmps;
-            tmps = s[i];
-            int ind = 1;
-            while( i - ind >= 0 && i + ind < l && s[i - ind] == s[i + ind]) {
-                tmps = s[i - ind] + tmps + s[i + ind];
-                ++ind;
+            startInd = i - 1;
+            endInd = i + 1;
+            while( startInd >= 0 && endInd < l && s[startInd] == s[endInd]) {
+                --startInd;
+                ++endInd;
             }
-            if ( tmps.length() > maxs.length()) {
-                maxs = tmps;
+            tmpl = endInd - startInd - 2;
+            if (tmpl > maxLen ) {
+                maxLen = tmpl;
+                retInd = startInd + 1;
             }
 
-            string tmps;
-            int ind = 0;
-            while( i - ind >= 0 && i + ind +1 < l && s[i - ind] == s[i + ind + 1]) {
-                tmps = s[i - ind] + tmps + s[i + ind + 1];
-                ++ind;
+            startInd = i;
+            endInd = i + 1;
+            while( startInd >= 0 && endInd < l && s[startInd] == s[endInd]) {
+                --startInd;
+                ++endInd;
             }
-            if ( tmps.length() > maxs.length()) {
-                maxs = tmps;
+            tmpl = endInd - startInd - 2;
+            if (tmpl > maxLen ) {
+                maxLen = tmpl;
+                retInd = startInd + 1;
             }
         }
-        return maxs;
+        return s.substr(retInd, maxLen + 1);
     }
 };
