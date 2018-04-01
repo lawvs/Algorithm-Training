@@ -4,52 +4,50 @@
  *
  * 创建时间：2018-4-1 18:34:26
  * 通过时间：2018-4-1 21:15:29
+ * 优化时间：2018-4-2 00:45:41
  */
 
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
-        map<int, int> m;
         vector<vector<int>> ret;
+        sort(nums.begin(), nums.end());
         const int len = nums.size();
         if (len < 3) {
             return ret;
         }
-        for (int i = 0; i < len; ++i) {
-            m.find(nums[i]) != m.end()? m[nums[i]]++ : m[nums[i]] = 1;
-        }
-        // 0
-        map<int, int>::iterator pos0 = m.find(0);
-        if (pos0 != m.end() && (*pos0).second >= 3) {
-            vector<int> v;
-            v.push_back(0);
-            v.push_back(0);
-            v.push_back(0);
-            ret.push_back(v);
-        }
+        for (int i = 0; i < len - 2; ++i) {
+            if (nums[i] > 0) {
+                // break;
+                return ret;
+            }
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
 
-        for(map<int, int>::iterator i = m.begin(); next(i, 1) != m.end(); i++) {
-            for(map<int, int>::iterator j = next(i, 1); j != m.end(); j++) {
-                int twoSum = -1 * ((*i).first + (*j).first);
-                if (twoSum !=(*i).first && twoSum < (*j).first) {
+            int j = i + 1;
+            int k = len - 1;
+            while(j < k) {
+                if (j > i + 1 && nums[j] == nums[j - 1]) {
+                    j++;
                     continue;
                 }
-                map<int, int>::iterator threePos = m.find(twoSum);
-                if (threePos != m.end() && (*threePos).second > 0) {
-                    if (threePos == i && (*i).second < 2) {
-                        continue;
-                    }
-                    if (threePos == j && (*j).second < 2) {
-                        continue;
-                    }
+                int sum = nums[i] + nums[j] + nums[k];
+                if (sum == 0) {
                     vector<int> v;
-                    v.push_back((*i).first);
-                    v.push_back((*j).first);
-                    v.push_back(twoSum);
+                    v.push_back(nums[i]);
+                    v.push_back(nums[j]);
+                    v.push_back(nums[k]);
                     ret.push_back(v);
+                    j++;
+                    k--;
+                } else if (sum > 0) {
+                    k--;
+                } else {
+                    j++;
                 }
             }
-         }
+        }
         return ret;
     }
 };
