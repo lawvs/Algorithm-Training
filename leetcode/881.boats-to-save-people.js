@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * leetcode #885 boats-to-save-people 救生艇
+ * leetcode #881 boats-to-save-people 救生艇
  * https://leetcode-cn.com/contest/weekly-contest-96/problems/boats-to-save-people/
  */
 
@@ -51,4 +51,4 @@ res = numRescueBoats(people, limit)
 ans = 7
 console.assert(res === ans)
 
-console.log("All test cases passed.")
+console.log('All test cases passed.')

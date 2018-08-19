@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * leetcode #890 possible-bipartition 可能的二分法
+ * leetcode #886 possible-bipartition 可能的二分法
  * https://leetcode-cn.com/contest/weekly-contest-97/problems/possible-bipartition/
  */
 

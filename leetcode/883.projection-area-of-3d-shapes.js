@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * leetcode #887 projection-area-of-3d-shapes 三维形体投影面积
+ * leetcode #883 projection-area-of-3d-shapes 三维形体投影面积
  * https://leetcode-cn.com/contest/weekly-contest-96/problems/projection-area-of-3d-shapes/
  */
 
@@ -46,4 +46,4 @@ res = projectionArea(grid)
 ans = 8
 console.assert(res === ans, res, ans)
 
-console.log("All test cases passed.")
+console.log('All test cases passed.')

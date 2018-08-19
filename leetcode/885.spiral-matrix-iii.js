@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * leetcode #889 spiral-matrix-iii 螺旋矩阵 III
+ * leetcode #885 spiral-matrix-iii 螺旋矩阵 III
  * https://leetcode-cn.com/contest/weekly-contest-97/problems/spiral-matrix-iii/
  */
 

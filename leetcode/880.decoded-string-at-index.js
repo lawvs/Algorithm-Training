@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * leetcode #884 decoded-string-at-index 索引处的解码字符串
+ * leetcode #880 decoded-string-at-index 索引处的解码字符串
  * https://leetcode-cn.com/contest/weekly-contest-96/problems/decoded-string-at-index/
  */
 

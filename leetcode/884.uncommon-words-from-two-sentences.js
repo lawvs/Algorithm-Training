@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * leetcode #888 uncommon-words-from-two-sentences 两句话中的不常见单词
+ * leetcode #884 uncommon-words-from-two-sentences 两句话中的不常见单词
  * https://leetcode-cn.com/contest/weekly-contest-97/problems/uncommon-words-from-two-sentences/
  */
 
