@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+    },
+    "isBackground": true,
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "javac",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "args": [
+                "-g",
+                "${file}",
+                "-encoding",
+                "utf-8",
+                "-d",
+                "${workspaceRoot}/target"
+            ],
+            "command": "javac"
+        }
+    ]
+}
