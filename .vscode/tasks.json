@@ -10,7 +10,34 @@
     "tasks": [
         {
             "type": "shell",
+            "label": "g++",
+            "command": "g++",
+            "args": [
+                "-g",
+                "-Wall",
+                "-O1",
+                "-std=c++11",
+                "${file}",
+                "-o",
+                "${workspaceRoot}/.debug/${fileBasenameNoExtension}.exe"
+            ],
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": ["relative", "${workspaceRoot}"],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        },
+        {
+            "type": "shell",
             "label": "javac",
+            "command": "javac",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -21,9 +48,8 @@
                 "-encoding",
                 "utf-8",
                 "-d",
-                "${workspaceRoot}/target"
-            ],
-            "command": "javac"
+                "${workspaceRoot}/.debug"
+            ]
         }
     ]
 }
