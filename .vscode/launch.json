@@ -46,9 +46,9 @@
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopOnEntry": false,
-            "mainClass": "Answer",
+            "mainClass": "${fileBasenameNoExtension}",
             "sourcePaths": ["${workspaceRoot}"],
-            "classPaths": ["target"],
+            "classPaths": [".debug"],
             "args": ""
         }
     ]
