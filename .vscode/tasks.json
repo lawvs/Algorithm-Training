@@ -50,6 +50,41 @@
                 "-d",
                 "${workspaceRoot}/.debug"
             ]
+        },
+        {
+            "type": "shell",
+            "label": "kotlinc",
+            "command": "kotlinc",
+            "args": [
+                "${file}",
+                "-include-runtime",
+                "-d",
+                "${workspaceRoot}/.debug/${fileBasenameNoExtension}.jar"
+            ],
+            "presentation": {
+                "clear": true
+            },
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        },
+        {
+            "type": "shell",
+            "label": "kotlin",
+            "dependsOn": ["kotlinc"],
+            "command": "java",
+            "args": [
+                "-jar",
+                "${workspaceRoot}/.debug/${fileBasenameNoExtension}.jar"
+            ],
+            "problemMatcher": []
         }
     ]
 }

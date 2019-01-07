@@ -46,3 +46,4 @@ Temporary Items
 .debug/
 .vscode/
 *.class
+META-INF/
