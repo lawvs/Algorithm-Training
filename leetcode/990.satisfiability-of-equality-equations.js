@@ -32,8 +32,8 @@ class DisjointSet {
    */
   count() {
     let cnt = 0
-    this.map.forEach(v => {
-      if (v === this.DEFAULT_VALUE) {
+    this.map.forEach((v, k) => {
+      if (v === k) {
         cnt++
       }
     })
