@@ -1,90 +1,98 @@
 {
-    "version": "2.0.0",
-    "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared"
-    },
-    "isBackground": true,
-    "tasks": [
-        {
-            "type": "shell",
-            "label": "g++",
-            "command": "g++",
-            "args": [
-                "-g",
-                "-Wall",
-                "-O1",
-                "-std=c++11",
-                "${file}",
-                "-o",
-                "${workspaceRoot}/.debug/${fileBasenameNoExtension}.exe"
-            ],
-            "problemMatcher": {
-                "owner": "cpp",
-                "fileLocation": ["relative", "${workspaceRoot}"],
-                "pattern": {
-                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
-                    "file": 1,
-                    "line": 2,
-                    "column": 3,
-                    "severity": 4,
-                    "message": 5
-                }
-            }
-        },
-        {
-            "type": "shell",
-            "label": "javac",
-            "command": "javac",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "args": [
-                "-g",
-                "${file}",
-                "-encoding",
-                "utf-8",
-                "-d",
-                "${workspaceRoot}/.debug"
-            ]
-        },
-        {
-            "type": "shell",
-            "label": "kotlinc",
-            "command": "kotlinc",
-            "args": [
-                "${file}",
-                "-include-runtime",
-                "-d",
-                "${workspaceRoot}/.debug/${fileBasenameNoExtension}.jar"
-            ],
-            "presentation": {
-                "clear": true
-            },
-            "problemMatcher": {
-                "pattern": {
-                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
-                    "file": 1,
-                    "line": 2,
-                    "column": 3,
-                    "severity": 4,
-                    "message": 5
-                }
-            }
-        },
-        {
-            "type": "shell",
-            "label": "kotlin",
-            "dependsOn": ["kotlinc"],
-            "command": "java",
-            "args": [
-                "-jar",
-                "${workspaceRoot}/.debug/${fileBasenameNoExtension}.jar"
-            ],
-            "problemMatcher": []
+  "version": "2.0.0",
+  "presentation": {
+    "echo": true,
+    "reveal": "always",
+    "focus": false,
+    "panel": "shared"
+  },
+  "isBackground": true,
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "g++",
+      "command": "g++",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "args": [
+        "-g",
+        "-Wall",
+        "-O1",
+        "-std=c++11",
+        "${file}",
+        "-o",
+        "${workspaceRoot}/.debug/${fileBasenameNoExtension}.out"
+      ],
+      "problemMatcher": {
+        "owner": "cpp",
+        "fileLocation": ["relative", "${workspaceRoot}"],
+        "pattern": {
+          "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 5
         }
-    ]
+      }
+    },
+    {
+      "type": "shell",
+      "label": "javac",
+      "command": "javac",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "args": [
+        "-g",
+        "${file}",
+        "-encoding",
+        "utf-8",
+        "-d",
+        "${workspaceRoot}/.debug"
+      ]
+    },
+    {
+      "type": "shell",
+      "label": "kotlinc",
+      "command": "kotlinc",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "args": [
+        "${file}",
+        "-include-runtime",
+        "-d",
+        "${workspaceRoot}/.debug/${fileBasenameNoExtension}.jar"
+      ],
+      "presentation": {
+        "clear": true
+      },
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 5
+        }
+      }
+    },
+    {
+      "type": "shell",
+      "label": "kotlin",
+      "dependsOn": ["kotlinc"],
+      "command": "java",
+      "args": [
+        "-jar",
+        "${workspaceRoot}/.debug/${fileBasenameNoExtension}.jar"
+      ],
+      "problemMatcher": []
+    }
+  ]
 }

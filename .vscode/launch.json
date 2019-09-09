@@ -1,55 +1,54 @@
 {
-    // 使用 IntelliSense 了解相关属性。
-    // 悬停以查看现有属性的描述。
-    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
+  // 使用 IntelliSense 了解相关属性。
+  // 悬停以查看现有属性的描述。
+  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C++",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceRoot}/.debug/${fileBasenameNoExtension}.out",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceRoot}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "preLaunchTask": "g++",
+      "setupCommands": [
         {
-            "name": "C++",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceRoot}/.debug/${fileBasenameNoExtension}.exe",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceRoot}",
-            "environment": [],
-            "externalConsole": true,
-            "MIMode": "gdb",
-            "miDebuggerPath": "${PATH}/MinGW64/bin/gdb.exe",
-            "preLaunchTask": "g++",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ]
-        },
-        {
-            "name": "Python",
-            "type": "python",
-            "request": "launch",
-            "program": "${file}",
-            "args": []
-        },
-        {
-            "name": "Node",
-            "type": "node",
-            "request": "launch",
-            "program": "${file}"
-        },
-        {
-            "name": "Java",
-            "type": "java",
-            "request": "launch",
-            "preLaunchTask": "javac",
-            "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
-            "stopOnEntry": false,
-            "mainClass": "${fileBasenameNoExtension}",
-            "sourcePaths": ["${workspaceRoot}"],
-            "classPaths": [".debug"],
-            "args": ""
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
         }
-    ]
+      ]
+    },
+    {
+      "name": "Python",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "args": []
+    },
+    {
+      "name": "Node",
+      "type": "node",
+      "request": "launch",
+      "program": "${file}"
+    },
+    {
+      "name": "Java",
+      "type": "java",
+      "request": "launch",
+      "preLaunchTask": "javac",
+      "cwd": "${workspaceRoot}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "${fileBasenameNoExtension}",
+      "sourcePaths": ["${workspaceRoot}"],
+      "classPaths": [".debug"],
+      "args": ""
+    }
+  ]
 }
