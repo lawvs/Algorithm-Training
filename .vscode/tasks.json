@@ -19,8 +19,8 @@
       "args": [
         "-g",
         "-Wall",
-        "-O1",
-        "-std=c++11",
+        // "-O1",
+        "-std=c++17",
         "${file}",
         "-o",
         "${workspaceRoot}/.debug/${fileBasenameNoExtension}.out"
