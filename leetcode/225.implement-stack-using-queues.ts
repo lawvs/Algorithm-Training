@@ -1,26 +1,24 @@
 class MyStack {
-  list1: number[] = []
-  list2: number[] = []
+  list: number[] = []
 
   push(x: number): void {
-    this.list2.push(x)
-    while (this.list1.length) {
-      this.list2.push(this.list1.shift())
+    const l = this.list.length
+    this.list.push(x)
+    for (let i = 0; i < l; i++) {
+      this.list.push(this.list.shift())
     }
-    this.list1 = this.list2
-    this.list2 = []
   }
 
   pop(): number {
-    return this.list1.shift()
+    return this.list.shift()
   }
 
   top(): number {
-    return this.list1[0]
+    return this.list[0]
   }
 
   empty(): boolean {
-    return !this.list1.length
+    return !this.list.length
   }
 }
 
