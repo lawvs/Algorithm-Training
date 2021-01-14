@@ -1,3 +1,4 @@
+package leetcode
 func canPlaceFlowers(flowerbed []int, n int) bool {
   now := 0
   for i := 0; i < len(flowerbed); i++ {

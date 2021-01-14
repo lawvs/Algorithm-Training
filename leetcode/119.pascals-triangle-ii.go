@@ -1,4 +1,4 @@
-package main
+package leetcode
 
 func getRow(rowIndex int) []int {
 	arr := []int{1}

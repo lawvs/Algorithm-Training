@@ -1,3 +1,4 @@
+package leetcode
 func largeGroupPositions(s string) [][]int {
   var ans [][]int
   var cur rune

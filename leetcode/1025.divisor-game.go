@@ -1,3 +1,5 @@
+package leetcode
+
 var m map[int]bool
 
 func divisorGame(N int) bool {
@@ -12,7 +14,7 @@ func divisorGame(N int) bool {
 		return ans
 	}
 	for i := 1; i < N; i++ {
-		if N % i == 0 && divisorGame(N - i) == false {
+		if N%i == 0 && divisorGame(N-i) == false {
 			return true
 		}
 	}

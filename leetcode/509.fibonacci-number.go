@@ -1,3 +1,4 @@
+package leetcode
 var m = make(map[int]int)
 
 func fib(n int) int {
