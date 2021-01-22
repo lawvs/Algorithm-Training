@@ -32,3 +32,13 @@ func (uf *unionFind) union(x, y int) bool {
 	uf.parent[fy] = fx
 	return true
 }
+
+func (uf *unionFind) count() int {
+	cnt := 0
+	for i := range uf.parent {
+		if uf.parent[i] == i {
+			cnt++
+		}
+	}
+	return cnt
+}
