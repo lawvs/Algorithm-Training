@@ -1,3 +1,5 @@
+package leetcode
+
 func findLengthOfLCIS(nums []int) int {
 	l := len(nums)
 	if l == 0 {
@@ -8,16 +10,16 @@ func findLengthOfLCIS(nums []int) int {
 	pre := nums[0]
 	for idx, v := range nums {
 		if v <= pre {
-			curL = max(curL, idx - posL)
+			curL = max(curL, idx-posL)
 			posL = idx
 		}
 		pre = v
 	}
-	curL = max(curL, l - posL)
+	curL = max(curL, l-posL)
 	return curL
 }
 
-func max(a,b int) int {
+func max(a, b int) int {
 	if a > b {
 		return a
 	}
