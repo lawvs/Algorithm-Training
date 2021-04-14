@@ -49,6 +49,13 @@
       "sourcePaths": ["${workspaceRoot}"],
       "classPaths": [".debug"],
       "args": ""
+    },
+    {
+      "name": "Go",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${file}"
     }
   ]
 }
