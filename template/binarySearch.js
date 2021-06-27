@@ -7,7 +7,7 @@ const binarySearch = (array, target) => {
   let low = 0
   let high = array.length
   while (low < high) {
-    const mid = Math.floor((high - low) / 2) + low
+    const mid = Math.floor((high + low) / 2)
     if (array[mid] < target) {
       low = mid + 1
     } else {
@@ -15,4 +15,26 @@ const binarySearch = (array, target) => {
     }
   }
   return low
+}
+
+/**
+ * BinarySearch
+ * @param {number[]} array
+ * @param {(mid: number)=> boolean} isLow
+ * @returns {number} idx
+ * @see https://www.youtube.com/watch?v=JuDAqNyTG4g
+ */
+const binarySearch = (array, isLow = () => true) => {
+  let low = -1
+  let high = array.length
+  while (low + 1 !== high) {
+    const mid = Math.floor((low + high) / 2)
+    if (isLow(mid)) {
+      low = mid
+    } else {
+      high = mid
+    }
+  }
+  // return low
+  return high
 }
