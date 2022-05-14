@@ -23,30 +23,16 @@ var maximumWhiteTiles = function (tiles, carpetLen) {
 
   // console.log(tiles);
   let poi = 0;
-  while (poi < tiles.length) {
-    const [from, to] = tiles[poi];
-    if (to <= carpetLen) {
-      cur.push(tiles[poi]);
-      poi++;
-      cnt += to - from + 1;
-      continue;
-    }
-    if (from > carpetLen) {
-      break;
-    }
-    cur.push([from, carpetLen]);
-    tiles[poi][0] = carpetLen + 1;
-    cnt += carpetLen - from + 1;
-    break;
-  }
-
-  // console.log(1, carpetLen, cnt, cur, tiles);
-
   let max = cnt;
+
   while (poi < tiles.length) {
     const [from, to] = tiles[poi];
+    const addLen = to - from + 1;
+    if (addLen >= carpetLen) {
+      return carpetLen;
+    }
     poi++;
-    cnt += to - from + 1;
+    cnt += addLen;
     const start = to - carpetLen + 1;
 
     while (cur.length && cur[0][0] < start) {
