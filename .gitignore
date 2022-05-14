@@ -44,6 +44,5 @@ Temporary Items
 
 # Customize
 .debug/
-.vscode/
 *.class
 META-INF/
