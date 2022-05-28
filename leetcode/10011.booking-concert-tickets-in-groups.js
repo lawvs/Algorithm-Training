@@ -1,4 +1,49 @@
 /**
+ * @param {{number}} n
+ */
+const buildBlock = (n) => {
+  const blockSize = Math.floor(Math.sqrt(n));
+
+  const maybeBlockNum = Math.floor(n / blockSize);
+  const cornerSize = n % blockSize;
+  const hasCorner = cornerSize !== 0;
+  const blockNum = hasCorner ? maybeBlockNum + 1 : maybeBlockNum;
+
+  return {
+    blockSize,
+    blockNum,
+    corner: {
+      hasCorner,
+      size: cornerSize,
+    },
+    /**
+     * @param {number} idx
+     * @return `blockIdx` 0..blockNum-1
+     */
+    getBlockIdx(idx) {
+      return Math.floor(idx / blockSize);
+    },
+    /**
+     * @param {number} idx
+     * @return shift in block
+     */
+    getShift(idx) {
+      return idx % blockSize;
+    },
+    /**
+     * [left, right)
+     * @param {number} blockIdx 0..blockNum-1
+     */
+    getBlock(blockIdx) {
+      return {
+        left: blockIdx * blockSize,
+        right: blockIdx === blockNum - 1 ? n : blockIdx * blockSize + blockSize,
+      };
+    },
+  };
+};
+
+/**
  * @param {number} n
  * @param {number} m
  */
@@ -12,11 +57,15 @@ var BookMyShow = function (n, m) {
   this.blockMap = {};
 
   // Decompose
-  this.blockSize = Math.floor(Math.sqrt(n));
-  this.blockNum = Math.floor(n / this.blockSize);
-  if (n % this.blockSize !== 0) {
-    this.blockNum++;
-    const restRow = n % this.blockSize;
+  const block = buildBlock(n);
+  this.blockSize = block.blockSize;
+  this.blockNum = block.blockNum;
+  this.getBlockIdx = block.getBlockIdx;
+  this.getBlock = block.getBlock;
+  this.getShift = block.getShift;
+
+  if (block.corner.hasCorner) {
+    const restRow = block.corner.size;
     this.blockMap[this.blockNum - 1] = {
       rest: this.m * restRow,
       rows: Array.from({ length: restRow }, () => this.m),
@@ -46,10 +95,7 @@ BookMyShow.prototype.gather = function (k, maxRow) {
   let blockN = this.minBlock;
   let flag = true;
 
-  while (
-    blockN <= Math.floor(maxRow / this.blockSize) &&
-    blockN < this.blockNum
-  ) {
+  while (blockN <= this.getBlockIdx(maxRow) && blockN < this.blockNum) {
     // console.log(blockN, this.blockMap);
 
     // Init block
@@ -62,8 +108,8 @@ BookMyShow.prototype.gather = function (k, maxRow) {
 
     const block = this.blockMap[blockN];
     let ri = block.rows.length;
-    if (blockN === Math.floor(maxRow / this.blockSize)) {
-      ri = (maxRow % this.blockSize) + 1;
+    if (blockN === this.getBlockIdx(maxRow)) {
+      ri = this.getShift(maxRow) + 1;
     }
     for (let i = 0; i < ri; i++) {
       const row = block.rows[i];
@@ -72,7 +118,7 @@ BookMyShow.prototype.gather = function (k, maxRow) {
         block.rows[i] = row - k;
         block.rest -= k;
 
-        return [blockN * this.blockSize + i, start];
+        return [this.getBlock(blockN).left + i, start];
       }
     }
     if (flag && block.rest <= 0) {
@@ -97,10 +143,7 @@ BookMyShow.prototype.scatter = function (k, maxRow) {
 
   let blockN = this.minBlock;
   let cur = 0;
-  while (
-    blockN <= Math.floor(maxRow / this.blockSize) &&
-    blockN < this.blockNum
-  ) {
+  while (blockN <= this.getBlockIdx(maxRow) && blockN < this.blockNum) {
     // Init block
     if (!this.blockMap[blockN]) {
       this.blockMap[blockN] = {
@@ -110,8 +153,8 @@ BookMyShow.prototype.scatter = function (k, maxRow) {
     }
 
     const block = this.blockMap[blockN];
-    if (blockN === Math.floor(maxRow / this.blockSize)) {
-      const ri = (maxRow % this.blockSize) + 1;
+    if (blockN === this.getBlockIdx(maxRow)) {
+      const ri = this.getShift(maxRow) + 1;
       for (let i = 0; i < ri; i++) {
         cur += block.rows[i];
         if (cur >= k) {
