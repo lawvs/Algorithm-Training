@@ -1,5 +1,5 @@
 /**
- * @param {{number}} n
+ * @param {{number}} n the length of the array
  */
 const buildBlock = (n) => {
   const blockSize = Math.floor(Math.sqrt(n));
